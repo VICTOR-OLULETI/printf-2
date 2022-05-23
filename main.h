@@ -11,15 +11,15 @@ int func_call_mag(char chr, va_list argp);
 int func_percent(int *flg, char chr);
 
 int _printf(const char *format, ...);
-char *convert_to(char representation[], unsigned int num, int base);
+char *cvrt_to(char representation[], unsigned int num, int base);
 int func_mag(char c, va_list argp);
 int print_ptr(va_list argp);
 int print_rot13(va_list argp);
 int print_rev(va_list argp);
 
 int _scan(char c, va_list argp);
-int print_character(va_list argp);
-int print_sign(va_list argp, int base);
-int print_unsign(va_list argp, int base);
-int print_string(va_list argp);
+int print_char(va_list argp);
+int _sign(va_list argp, int base);
+int _unsign(va_list argp, int base);
+int _string(va_list argp);
 #endif
