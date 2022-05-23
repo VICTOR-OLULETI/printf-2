@@ -1,48 +1,103 @@
 #include "main.h"
-
+#include <stdio.h>
 /**
- * _printf - produces output according to a format
- * @format: format string containing the characters and the specifiers
- * Description: this function will call the get_print() function that will
- * determine which printing function to call depending on the conversion
- * specifiers contained into fmt
- * Return: length of the formatted output string
+ * __print - the function act as printf function
+ * Description: This function has some of the features of c printf
+ * @format: pointer to chatacter to format
+ * Return: number of character printed
  */
+
 int _printf(const char *format, ...)
 {
-    int (*pfunc)(va_list, flags_t *);
-    const char *p;
-    va_list arguments;
-    flags_t flags = {0, 0, 0};
+        const char *str;
+        int cnt = 0;
 
-    register int count = 0;
+        va_list argp;
 
-    va_start(arguments, format);
-    if (!format || (format[0] == '%' && !format[1]))
-        return (-1);
-    if (format[0] == '%' && format[1] == ' ' && !format[2])
-        return (-1);
-    for (p = format; *p; p++)
-    {
-        if (*p == '%')
+        if (!format)
+                return (-1);
+        va_start( argp, format);
+        str = format;
+        cnt = check(argp, str);
+        va_end(argp);
+        return (cnt);
+}
+
+/**
+ * check - iterate through the string
+ * @str: pointer from format
+ * @arg: variadic list
+ * Descption: function iterate through the string
+ * Return: num of formated character
+ */
+
+
+int check(va_list argp, const char *str)
+{
+      int i = 0;
+        int p_check = 0;
+        int fm_cnt = 0;
+        int cnt = 0;
+        int flg = 0;
+
+        while (i < _strlen((char *)str) && *str != '\0')
         {
-            p++;
-            if (*p == '%')
-            {
-                count += _putchar('%');
-                continue;
-            }
-            while (get_flag(*p, &flags))
-                p++;
-            pfunc = get_print(*p);
-            count += (pfunc)
-                         ? pfunc(arguments, &flags)
-                         : _printf("%%%c", *p);
+                char chr = str[i];
+                if (chr == '%')
+                {
+                        i++;
+                        flg++;
+                        chr == str[i];
+                        if (chr == '\0' && _strlen((char *)str) == 1)
+                                return (-1);
+                        if (chr == '\0')
+                                return (cnt);
+                        if (chr == '%')
+                        {
+                                flg++;
+                        }
+                        else
+                        {
+                                fm_cnt = func_mag(chr, argp);
+
+                                if (fm_cnt >= 0 && fm_cnt != -1)
+                                {
+                                        i++;
+                                        chr = str[i];
+                                        if(chr == '%')
+                                                flg--;
+                                        cnt = cnt + fm_cnt;
+                                        }
+                                else if(fm_cnt == -1 && chr != '\n')
+                                {
+                                        cnt += _putchar('%');
+                                }
+                        }
+                }
+                p_check = func_percent(&flg, chr);
+                cnt += p_check;
+
+                if (p_check == 0 && chr != '\0' && chr != '%')
+                        cnt += _putchar(chr), i++;
+                p_check = 0;
         }
-        else
-            count += _putchar(*p);
-    }
-    _putchar(-1);
-    va_end(arguments);
-    return (count);
+        return (cnt);
+
+}
+
+
+/**
+ * func_call_mag - call function
+ * @chr: character
+ * @arg: va_list arg
+ * Description: function call func_mang
+ */
+
+int func_call_mag(char chr, va_list argp)
+{
+	int cnt = 0;
+
+        cnt = func_mag(chr, argp);
+
+        return (cnt);
 }
