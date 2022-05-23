@@ -1,6 +1,8 @@
 #ifndef MAIN_H
 #define MAIN_H
+
 #include <stdarg.h>
+
 int _putchar(char c);
 void _puts(char *str);
 int _strlen(char *str);
@@ -22,4 +24,12 @@ int print_char(va_list argp);
 int _sign(va_list argp, int base);
 int _unsign(va_list argp, int base);
 int _string(va_list argp);
+
+typedef struct identifierStruct
+{
+char *indentifier;
+int (*printer)(va_list);
+} identifierStruct;
+
+
 #endif
