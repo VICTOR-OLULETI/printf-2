@@ -1,103 +1,92 @@
 #include "main.h"
+#include <stdlib.h>
 #include <stdio.h>
+
 /**
- * __print - the function act as printf function
- * Description: This function has some of the features of c printf
- * @format: pointer to chatacter to format
- * Return: number of character printed
+ * printIdentifiers - prints special characters
+ * @next: character after the %
+ * @arg: argument for the indentifier
+ * Return: the number of characters printed
+ * (excluding the null byte used to end output to strings)
+ */
+
+int printIdentifiers(char next, va_list arg)
+{
+	int functsIndex;
+
+	identifierStruct functs[] = {
+		{"c", print_char},
+		{"s", print_str},
+		{"d", print_int},
+		{"i", print_int},
+		{"u", print_unsigned},
+		{"b", print_unsignedToBinary},
+		{"o", print_oct},
+		{"x", print_hex},
+		{"X", print_HEX},
+		{"S", print_STR},
+		{NULL, NULL}
+	};
+
+	for (functsIndex = 0; functs[functsIndex].indentifier != NULL; functsIndex++)
+	{
+		if (functs[functsIndex].indentifier[0] == next)
+			return (functs[functsIndex].printer(arg));
+	}
+	return (0);
+}
+
+/**
+ * _printf - mimic printf from stdio
+ * Description: produces output according to a format
+ * write output to stdout, the standard output stream
+ * @format: character string composed of zero or more directives
+ *
+ * Return: the number of characters printed
+ * (excluding the null byte used to end output to strings)
+ * return -1 for incomplete identifier error
  */
 
 int _printf(const char *format, ...)
 {
-        const char *str;
-        int cnt = 0;
+	unsigned int i;
+	int identifierPrinted = 0, charPrinted = 0;
+	va_list arg;
 
-        va_list argp;
+	va_start(arg, format);
+	if (format == NULL)
+		return (-1);
 
-        if (!format)
-                return (-1);
-        va_start( argp, format);
-        str = format;
-        cnt = check(argp, str);
-        va_end(argp);
-        return (cnt);
-}
+	for (i = 0; format[i] != '\0'; i++)
+	{
+		if (format[i] != '%')
+		{
+			_putchar(format[i]);
+			charPrinted++;
+			continue;
+		}
+		if (format[i + 1] == '%')
+		{
+			_putchar('%');
+			charPrinted++;
+			i++;
+			continue;
+		}
+		if (format[i + 1] == '\0')
+			return (-1);
 
-/**
- * check - iterate through the string
- * @str: pointer from format
- * @arg: variadic list
- * Descption: function iterate through the string
- * Return: num of formated character
- */
+		identifierPrinted = printIdentifiers(format[i + 1], arg);
+		if (identifierPrinted == -1 || identifierPrinted != 0)
+			i++;
+		if (identifierPrinted > 0)
+			charPrinted += identifierPrinted;
 
-
-int check(va_list argp, const char *str)
-{
-      int i = 0;
-        int p_check = 0;
-        int fm_cnt = 0;
-        int cnt = 0;
-        int flg = 0;
-
-        while (i < _strlen((char *)str) && *str != '\0')
-        {
-                char chr = str[i];
-                if (chr == '%')
-                {
-                        i++;
-                        flg++;
-                        chr == str[i];
-                        if (chr == '\0' && _strlen((char *)str) == 1)
-                                return (-1);
-                        if (chr == '\0')
-                                return (cnt);
-                        if (chr == '%')
-                        {
-                                flg++;
-                        }
-                        else
-                        {
-                                fm_cnt = func_mag(chr, argp);
-
-                                if (fm_cnt >= 0 && fm_cnt != -1)
-                                {
-                                        i++;
-                                        chr = str[i];
-                                        if(chr == '%')
-                                                flg--;
-                                        cnt = cnt + fm_cnt;
-                                        }
-                                else if(fm_cnt == -1 && chr != '\n')
-                                {
-                                        cnt += _putchar('%');
-                                }
-                        }
-                }
-                p_check = func_percent(&flg, chr);
-                cnt += p_check;
-
-                if (p_check == 0 && chr != '\0' && chr != '%')
-                        cnt += _putchar(chr), i++;
-                p_check = 0;
-        }
-        return (cnt);
-
-}
-
-
-/**
- * func_call_mag - call function
- * @chr: character
- * @arg: va_list arg
- * Description: function call func_mang
- */
-
-int func_call_mag(char chr, va_list argp)
-{
-	int cnt = 0;
-
-        cnt = func_mag(chr, argp);
-
-        return (cnt);
+		if (identifierPrinted == 0)
+		{
+			_putchar('%');
+			charPrinted++;
+		}
+	}
+	va_end(arg);
+	return (charPrinted);
 }
