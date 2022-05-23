@@ -6,7 +6,7 @@ void _puts(char *str);
 int _strlen(char *s);
 
 int print_base16_upper_lower(va_list argp, char *representation);
-int loop_format(va_list arg, const char *string);
+int check(va_list arg, const char *string);
 int func_call_mag(char chr, va_list argp);
 int func_percent(int *flg, char chr);
 

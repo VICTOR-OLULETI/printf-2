@@ -31,12 +31,13 @@ int _printf(const char *format, ...)
  */
 
 
-int check(va_list argp, const char *str)
+int check(va_list arg, const char *str)
 {
       int i = 0;
         int p_check = 0;
         int fm_cnt = 0;
         int cnt = 0;
+        int chase = 0;
         int flg = 0;
 
         while (i < _strlen((char *)str) && *str != '\0')
@@ -67,13 +68,13 @@ int check(va_list argp, const char *str)
                                                 flg--;
                                         cnt = cnt + fm_cnt;
                                         }
-                                else if(fm_cnt == -1 && chr != '\n')
+                                else if(fm_cnt == -1 && aux != '\n')
                                 {
                                         cnt += _putchar('%');
                                 }
                         }
                 }
-                p_check = func_percent(&flg, chr);
+                p_check i = func_percent(&flg, chr);
                 cnt += p_check;
 
                 if (p_check == 0 && chr != '\0' && chr != '%')
@@ -96,7 +97,7 @@ int func_call_mag(char chr, va_list argp)
 {
             int cnt = 0;
 
-        cnt = func_mag(chr, argp);
+        cnt = func_mag(chr argp);
 
         return (cnt);
 }
