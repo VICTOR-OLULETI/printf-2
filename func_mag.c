@@ -14,7 +14,7 @@ int func_mag(char chr, va_list argp)
 	int cnt = 0;
 
 	cnt = _scan(chr, argp);
-	if (c == 'p')
+	if (chr == 'p')
 		cnt = print_ptr(argp);
 	return (cnt);
 }
@@ -28,41 +28,42 @@ int func_mag(char chr, va_list argp)
  */
 int _scan(char chr, va_list argp)
 {
-	int cont = 0;
+	int cnt = 0;
 
 	switch (chr)
 	{
+
 		case 'd':
 		case 'i':
-			cont += print_sign(arg, 10);
+			cnt += _sign(argp, 10);
 			break;
 		case 'o':
-			cont += print_unsign(arg, 8);
+			cnt += _unsign(argp, 8);
 			break;
 		 case 'b':
-                        cont += print_unsign(arg, 2);
+                        cnt += _unsign(argp, 2);
                         break;
                 case 'c':
-                        cont += print_character(arg);
+                        cnt += print_char(argp);
                         break;
 		case 'u':
-                        cont += print_unsign(arg, 10);
+                        cnt += _unsign(argp, 10);
                         break;
                 case 'x':
-                        cont += print_base16_upper_lower(arg, "0123456789abcdef");
+                        cnt += base16_upper_lower(argp, "0123456789abcdef");
                         break;
                 case 'X':
-                        cont += print_base16_upper_lower(arg, "0123456789ABCDEF");
+                        cnt += base16_upper_lower(argp, "0123456789ABCDEF");
                         break;
 		case 'r':
-			cont += print_rev(arg);
+			cnt += print_rev(argp);
 			break;
 		case 'R':
-			cont += print_rot13(arg);
+			cnt += print_rot13(argp);
 			break;
 	
 		default:
-			cont = -1;
+			cnt = -1;
 	}
-	return (cont);
+	return (cnt);
 }

@@ -53,11 +53,11 @@ int _ptr(va_list argp)
 }
 
 /**
- * _rot13 - prints a string using rot13
+ * print_rot13 - prints a string using rot13
  * @arg: list of arguments from _printf
  * Return: length of the printed string
  */
-int _rot13(va_list argp)
+int print_rot13(va_list argp)
 {
 	register short i, j;
 	char rt13[] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -84,11 +84,11 @@ int _rot13(va_list argp)
 }
 
 /**
- * _rev - string  reverse
+ * print_rev - string  reverse
  * @argp: argument _printf
  * Return: length
  */
-int _rev(va_list argp)
+int print_rev(va_list argp)
 {
 	int i = 0;
 	int j;
