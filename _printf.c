@@ -94,7 +94,7 @@ int check(va_list argp, const char *str)
 
 int func_call_mag(char chr, va_list argp)
 {
-            int cnt = 0;
+	int cnt = 0;
 
         cnt = func_mag(chr, argp);
 
