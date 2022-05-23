@@ -17,7 +17,7 @@ int print_ptr(va_list argp);
 int print_rot13(va_list argp);
 int print_rev(va_list argp);
 
-int _scan(char c, va_list argp);
+int _scan(char chr, va_list argp);
 int print_char(va_list argp);
 int _sign(va_list argp, int base);
 int _unsign(va_list argp, int base);

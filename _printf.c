@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 /**
  * __print - the function act as printf function
  * Description: This function has some of the features of c printf

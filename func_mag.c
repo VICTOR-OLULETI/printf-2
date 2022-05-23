@@ -9,11 +9,11 @@
  * Return: count of printrd character 
  */
 
-int function_manager(char c, va_list argp)
+int func_mag(char chr, va_list argp)
 {
 	int cnt = 0;
 
-	cnt = _scan(c, argp);
+	cnt = _scan(chr, argp);
 	if (c == 'p')
 		cnt = print_ptr(argp);
 	return (cnt);
@@ -26,11 +26,11 @@ int function_manager(char c, va_list argp)
  *Description: This function evaluate cases
  *Return: count of printed characters
  */
-int _scan(char c, va_list arg)
+int _scan(char chr, va_list argp)
 {
 	int cont = 0;
 
-	switch (c)
+	switch (chr)
 	{
 		case 'd':
 		case 'i':
