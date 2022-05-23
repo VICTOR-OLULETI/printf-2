@@ -2,8 +2,8 @@
 
 /**
  *  _printf - prints %c and %s format specifier
- *  @format: format string
- *  Return: number of printed charaters
+ *  @format: format str
+ *  Return: num of printed charaters
  */
 
 int _printf(const char *format, ...)
