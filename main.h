@@ -20,14 +20,14 @@ int print_HEX(va_list arg);
 int print_STR (va_list arg);
 
 /**
- * struct specifierStruct - structure definition of a printTypeStruct
+ * struct identifierStruct - structure definition of a printTypeStruct
  * @indentifier: type
  * @printer: function to print
  */
 typedef struct identifierStruct
 {
-char *identifier;
-int (*printer)(va_list);
+	char *identifier;
+	int (*printer)(va_list);
 } identifierStruct;
 
 #endif
