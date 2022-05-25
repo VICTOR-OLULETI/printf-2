@@ -1,25 +1,33 @@
 #ifndef MAIN_H
 #define MAIN_H
+
 #include <stdarg.h>
+
 int _putchar(char c);
-void _puts(char *str);
-int _strlen(char *str);
-
-int base16_upper_lower(va_list argp, char *rep);
-int check(va_list arg, const char *string);
-int func_call_mag(char chr, va_list argp);
-int func_percent(int *flg, char chr);
-
+int p_int(va_list arg);
+int p_unsigned(va_list arg);
 int _printf(const char *format, ...);
-char *cvrt_to(char rep[], unsigned int num, int base);
-int func_mag(char chr, va_list argp);
-int print_ptr(va_list argp);
-int print_rot13(va_list argp);
-int print_rev(va_list argp);
+int p_char(va_list arg);
+int p_str(va_list arg);
+int p_percent(void);
+void p_binary(unsigned int n, unsigned int* printed);
+int p_ToBinary(va_list arg);
+int p_oct(va_list arg);
+int p_IntToHex(unsigned int num, char _case);
+int p_hex_base(va_list arg, char _case);
+int p_hex(va_list arg);
+int p_HEX(va_list arg);
+int p_STR (va_list arg);
 
-int _scan(char chr, va_list argp);
-int print_char(va_list argp);
-int _sign(va_list argp, int base);
-int _unsign(va_list argp, int base);
-int _string(va_list argp);
+/**
+ * struct identifierStruct - struct definition 
+ * @indentifier: type
+ * @printer: function to print
+ */
+typedef struct specifierStruct
+{
+char *specifier;
+int (*printer)(va_list);
+} specifierStruct;
+
 #endif
