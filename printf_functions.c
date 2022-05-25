@@ -2,24 +2,24 @@
 #include <unistd.h>
 #include <stdio.h>
 /**
- * p_char - writes the character c to stdout
+ * print_char - writes the character c to stdout
  * @arg: argument
  *
  * Return: On success 1.
  * On error, -1 is returned, and errno is set appropriately.
  */
-int p_char(va_list arg)
+int print_char(va_list arg)
 {
 	return (_putchar(va_arg(arg, int)));
 }
 
 /**
- * p_int - prints an integer.
+ * print_int - prints an integer.
  * @arg: argument
  * Return: 0
  */
 
-int p_int(va_list arg)
+int print_int(va_list arg)
 {
 	unsigned int div = 1;
 	unsigned i;
@@ -47,7 +47,7 @@ return (num);
 
 
 /**
- * p_STR - prints a string with a `S`
+ * print_STR - prints a string with a `S`
  * @arg: argument
  * Return: number of character printed
  */
@@ -106,7 +106,7 @@ int print_str(va_list arg)
  * Return: 0
  */
 
-int p_unsigned(va_list arg)
+int print_unsigned(va_list arg)
 {
 	int div = 1;
 	int i;

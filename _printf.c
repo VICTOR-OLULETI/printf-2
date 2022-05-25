@@ -14,16 +14,16 @@ int printIdentifiers(char next, va_list arg)
         int Index;
 
         specifierStruct functs[] = {
-                {"c", p_char},
-                {"s", p_str},
-                {"d", p_int},
-                {"i", p_int},
-                {"u", p_unsigned},
-                {"b", p_ToBinary},
-                {"o", p_oct},
-                {"x", p_hex},
-                {"X", p_HEX},
-                {"S", p_STR},
+                {"c", print_char},
+                {"s", print_str},
+                {"d", print_int},
+                {"i", print_int},
+                {"u", print_unsigned},
+                {"b", print_unsignedToBinary},
+                {"o", print_oct},
+                {"x", print_hex},
+                {"X", print_HEX},
+                {"S", print_STR},
                 {NULL, NULL}
         };
 
