@@ -52,7 +52,7 @@ return (num);
  * Return: number of character printed
  */
 
-int p_STR(va_list arg)
+int print_STR(va_list arg)
 {
 	int i;
 	char *str = va_arg(arg, char*);
@@ -68,6 +68,7 @@ for (i = 0; str[i]; i++)
 	{
 		_putchar('\\');
 		_putchar('x');
+
 		if (i < 16)
 			_putchar('0');
 
@@ -101,7 +102,7 @@ int print_str(va_list arg)
 }
 
 /**
- * p_unsigned - prints an unsigned int.
+ * print_unsigned - prints an unsigned int.
  * @arg: argument
  * Return: 0
  */
@@ -112,6 +113,7 @@ int print_unsigned(va_list arg)
 	int i;
 	int rp;
 	unsigned int n = va_arg(arg, unsigned int);
+
 	for (i = 0; n / div > 9; i++, div *= 10)
 		;
 	for (; div >= 1; n %= div, div /= 10)
