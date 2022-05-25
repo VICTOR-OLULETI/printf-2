@@ -24,10 +24,10 @@ int print_STR (va_list arg);
  * @indentifier: type
  * @printer: function to print
  */
-typedef struct specifierStruct
+typedef struct identifierStruct
 {
-char *specifier;
+char *identifier;
 int (*printer)(va_list);
-} spcifierStruct;
+} identifierStruct;
 
 #endif
